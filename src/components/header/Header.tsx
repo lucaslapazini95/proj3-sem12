@@ -1,7 +1,7 @@
 import { Link } from "react-router-dom";
-import LogoFurniro from "../assets/furniro-logo.svg";
-import AccountIcon from "../assets/header/user.svg";
-import CartIcon from "../assets/header/cart.svg";
+import LogoFurniro from "../../assets/furniro-logo.svg";
+import AccountIcon from "../../assets/header/user.svg";
+import CartIcon from "../../assets/header/cart.svg";
 
 const Header = () => {
   return (
