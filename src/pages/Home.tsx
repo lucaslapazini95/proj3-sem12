@@ -1,7 +1,9 @@
+import Products from "../components/productCard/Products";
+
 const Home = () => {
   return (
     <div>
-      <h1>Home</h1>
+      <Products isPreview />
     </div>
   );
 };
