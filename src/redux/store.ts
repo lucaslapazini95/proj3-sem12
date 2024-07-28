@@ -1,8 +1,9 @@
 import { configureStore } from "@reduxjs/toolkit";
+import productsReducer from "./productsSlice";
 
 const store = configureStore({
   reducer: {
-    // Adicione seus reducers aqui
+    products: productsReducer,
   },
 });
 
