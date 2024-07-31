@@ -1,18 +1,15 @@
 import React from "react";
+import { useNavigate } from "react-router-dom";
+import { IProducts } from "../../types/product";
 
-interface Product {
-  id: number;
-  title: string;
-  description: { short: string };
-  images: { mainImage: string };
-  normalPrice: number;
-  salePrice: number;
-  discountPercentage: number;
-  new: boolean;
-}
-
-const ProductCard: React.FC<{ product: Product }> = ({ product }) => {
+const ProductCard: React.FC<{ product: IProducts }> = ({ product }) => {
   const shouldShowDiscount = Math.random() > 0.5;
+
+  const navigation = useNavigate();
+
+  const handleRedirect = () => {
+    navigation(`/shop/product/${product.sku}`);
+  };
 
   const hasDiscount = product.normalPrice !== product.salePrice;
   const discountCircle =
@@ -23,7 +20,10 @@ const ProductCard: React.FC<{ product: Product }> = ({ product }) => {
     ) : null;
 
   return (
-    <div className="relative max-h-[446px] w-[285px] rounded-xl overflow-hidden bg-white shadow-md">
+    <div
+      className="relative max-h-[446px] w-[285px] rounded-xl overflow-hidden bg-white shadow-md"
+      onClick={handleRedirect}
+    >
       <img
         className="rounded-t-xl w-full object-cover object-center"
         src={product.images.mainImage}

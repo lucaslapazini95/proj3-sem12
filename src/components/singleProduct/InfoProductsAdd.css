@@ -1,0 +1,35 @@
+.breadcrumb-container {
+  background-color: #f9f1e7;
+  padding: 8px 0;
+  width: 100%;
+}
+
+.breadcrumb-content {
+  max-width: 1200px; /* ou qualquer que seja a largura máxima do seu layout */
+  margin: 0 auto;
+  padding: 0 20px; /* ou o padding lateral que você usa no seu layout */
+  display: flex;
+  align-items: center;
+  justify-content: start;
+}
+
+.breadcrumb-item {
+  display: flex;
+  align-items: center;
+  color: #9f9f9f;
+  font-size: 1rem;
+  font-weight: normal;
+}
+
+.breadcrumb-separator {
+  margin: 0 8px;
+}
+
+.breadcrumb-divider {
+  margin: 0 8px;
+}
+
+.breadcrumb-product-title {
+  color: black;
+  font-weight: normal;
+}

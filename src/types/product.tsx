@@ -16,16 +16,17 @@ export interface IProducts {
   images: Iimages;
 }
 
-interface Idescription {
+export interface Idescription {
   short: string;
   long: string;
 }
 
-interface Icolors {
+export interface Icolors {
   name: string;
   hex: string;
 }
-interface Iimages {
+
+export interface Iimages {
   mainImage: string;
   gallery: string[];
 }

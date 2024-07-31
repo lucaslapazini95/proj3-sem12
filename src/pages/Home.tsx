@@ -4,16 +4,7 @@ import Products from "../components/productCard/Products";
 import InspirationCarousel from "../components/inspiration/InspirationCarousel";
 import Setup from "../components/setup/Setup";
 import React, { useEffect, useState } from "react";
-
-interface IProductImage {
-  mainImage: string;
-}
-
-interface IProducts {
-  id: number;
-  title: string;
-  images: IProductImage;
-}
+import { IProducts } from "../types/product";
 
 const Home: React.FC = () => {
   const [products, setProducts] = useState<IProducts[]>([]);
