@@ -54,8 +54,8 @@ const Contact = () => {
           </ul>
           <FormContact />
         </section>
-        <Seals />
       </main>
+      <Seals />
     </>
   );
 };

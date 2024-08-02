@@ -1,13 +1,13 @@
 .breadcrumb-container {
   background-color: #f9f1e7;
-  padding: 8px 0;
+  padding: 38px 0;
   width: 100%;
 }
 
 .breadcrumb-content {
-  max-width: 1200px; /* ou qualquer que seja a largura máxima do seu layout */
+  max-width: 1200px;
   margin: 0 auto;
-  padding: 0 20px; /* ou o padding lateral que você usa no seu layout */
+  padding: 0 20px;
   display: flex;
   align-items: center;
   justify-content: start;

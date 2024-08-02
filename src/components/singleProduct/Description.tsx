@@ -1,13 +1,16 @@
-type DescriptionProps = {
+import React from "react";
+
+interface DescriptionProps {
   text: string;
-};
+}
+
 const Description: React.FC<DescriptionProps> = ({ text }) => {
   return (
-    <section className="border-t border-[#9f9f9f] py-12 px-6 flex flex-col items-center">
-      <h2 className="text-black text-2xl font-medium mb-9">Description</h2>
-      <p className="text-base text-[#9f9f9f] font-normal mb-7 text-center">
-        {text}
-      </p>
+    <section className="py-12 border-t border-gray-300">
+      <div className="max-w-screen-lg mx-auto px-4">
+        <h2 className="text-2xl font-semibold text-black mb-6">Description</h2>
+        <p className="text-base text-gray-600">{text}</p>
+      </div>
     </section>
   );
 };

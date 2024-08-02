@@ -5,13 +5,19 @@ import AccountIcon from "../../assets/header/user.svg";
 import CartIcon from "../../assets/header/cart.svg";
 import MenuIcon from "../../assets/header/menu.svg";
 import CloseIcon from "../../assets/header/close.svg";
+import ShoppingCartSidebar from "../shoppingCartSidebar/ShoppingCartSidebar";
 import "./Header.css";
 
 const Header = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const [isCartOpen, setIsCartOpen] = useState(false);
 
   const toggleMenu = () => {
     setIsMenuOpen(!isMenuOpen);
+  };
+
+  const toggleCart = () => {
+    setIsCartOpen(!isCartOpen);
   };
 
   return (
@@ -38,7 +44,9 @@ const Header = () => {
           <Link to="/signup">
             <img src={AccountIcon} alt="AccountIcon" className="h-6" />
           </Link>
-          <img src={CartIcon} alt="CartIcon" className="h-6" />
+          <button onClick={toggleCart}>
+            <img src={CartIcon} alt="CartIcon" className="h-6" />
+          </button>
         </div>
         <button
           className="lg:hidden text-gray-700 focus:outline-none"
@@ -101,14 +109,18 @@ const Header = () => {
               </Link>
             </li>
             <li>
-              <div className="flex items-center space-x-2">
+              <button
+                className="flex items-center space-x-2 text-gray-700 hover:text-gray-900"
+                onClick={toggleCart}
+              >
                 <img src={CartIcon} alt="CartIcon" className="h-6" />
                 <span>Cart</span>
-              </div>
+              </button>
             </li>
           </ul>
         </nav>
       )}
+      <ShoppingCartSidebar isOpen={isCartOpen} onClose={toggleCart} />
     </header>
   );
 };
