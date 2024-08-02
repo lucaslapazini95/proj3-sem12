@@ -1,14 +1,28 @@
 import React from "react";
 import { useNavigate } from "react-router-dom";
 import { IProducts } from "../../types/product";
+import { useDispatch } from "react-redux";
+import { addItemToCart } from "../../redux/cartSlice";
 
 const ProductCard: React.FC<{ product: IProducts }> = ({ product }) => {
   const shouldShowDiscount = Math.random() > 0.5;
-
   const navigation = useNavigate();
+  const dispatch = useDispatch();
 
   const handleRedirect = () => {
     navigation(`/shop/product/${product.sku}`);
+  };
+
+  const handleAddToCart = () => {
+    dispatch(
+      addItemToCart({
+        id: product.id,
+        title: product.title,
+        salePrice: product.salePrice,
+        imageUrl: product.images.mainImage,
+        quantity: 1,
+      })
+    );
   };
 
   const hasDiscount = product.normalPrice !== product.salePrice;
@@ -20,14 +34,12 @@ const ProductCard: React.FC<{ product: IProducts }> = ({ product }) => {
     ) : null;
 
   return (
-    <div
-      className="relative max-h-[446px] w-[285px] rounded-xl overflow-hidden bg-white shadow-md"
-      onClick={handleRedirect}
-    >
+    <div className="relative max-h-[446px] w-[285px] rounded-xl overflow-hidden bg-white shadow-md">
       <img
         className="rounded-t-xl w-full object-cover object-center"
         src={product.images.mainImage}
         alt={product.title}
+        onClick={handleRedirect}
       />
       {product.new && (
         <div className="absolute top-4 right-4 w-11 h-11 bg-[#2EC1AC] text-white text-base flex items-center justify-center rounded-full">
@@ -57,6 +69,12 @@ const ProductCard: React.FC<{ product: IProducts }> = ({ product }) => {
             </span>
           )}
         </div>
+        <button
+          onClick={handleAddToCart}
+          className="mt-4 bg-[#B88E2F] text-white py-2 px-4 rounded hover:bg-[#A07A24] transition-all duration-300"
+        >
+          Adicionar ao Carrinho
+        </button>
       </div>
     </div>
   );

@@ -4,6 +4,7 @@ import Contact from "../pages/Contact";
 import Home from "../pages/Home";
 import Shop from "../pages/Shop";
 import SingleProduct from "../pages/SingleProduct";
+import Cart from "../pages/Cart";
 
 export const router = createBrowserRouter([
   {
@@ -15,7 +16,7 @@ export const router = createBrowserRouter([
         element: <Home />,
       },
       {
-        path: "contact",
+        path: "/contact",
         element: <Contact />,
       },
       {
@@ -23,8 +24,12 @@ export const router = createBrowserRouter([
         element: <Shop />,
       },
       {
-        path: "shop/product/:sku",
+        path: "/shop/product/:sku",
         element: <SingleProduct />,
+      },
+      {
+        path: "/cart",
+        element: <Cart />,
       },
     ],
   },

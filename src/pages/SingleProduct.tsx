@@ -1,16 +1,23 @@
+import React from "react";
+import { useParams } from "react-router-dom";
+import Breadcrumbs from "../components/singleProduct/Breadcrumbs";
 import InfoProduct from "../components/singleProduct/InfoProduct";
-import { useEffect } from "react";
-import { useLocation } from "react-router-dom";
+import { useSelector } from "react-redux";
+import { RootState } from "../redux/store";
 
-const SingleProduct = () => {
-  const location = useLocation();
+const SingleProduct: React.FC = () => {
+  const { sku } = useParams<{ sku: string }>();
+  const product = useSelector((state: RootState) =>
+    state.products.products.find((p) => p.sku === sku)
+  );
 
-  useEffect(() => {
-    window.scrollTo(0, 0);
-  }, [location]);
+  if (!product) {
+    return <div>Loading...</div>;
+  }
 
   return (
     <div>
+      <Breadcrumbs productTitle={product.title} />
       <InfoProduct />
     </div>
   );
