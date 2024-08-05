@@ -1,5 +1,7 @@
 import { useState } from "react";
 import { Link } from "react-router-dom";
+import { useAuthState } from "react-firebase-hooks/auth";
+import { auth } from "../../services/firebaseConfig";
 import LogoFurniro from "../../assets/furniro-logo.svg";
 import AccountIcon from "../../assets/header/user.svg";
 import CartIcon from "../../assets/header/cart.svg";
@@ -11,6 +13,7 @@ import "./Header.css";
 const Header = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isCartOpen, setIsCartOpen] = useState(false);
+  const [user] = useAuthState(auth);
 
   const toggleMenu = () => {
     setIsMenuOpen(!isMenuOpen);
@@ -18,6 +21,10 @@ const Header = () => {
 
   const toggleCart = () => {
     setIsCartOpen(!isCartOpen);
+  };
+
+  const handleLogout = async () => {
+    await auth.signOut();
   };
 
   return (
@@ -41,9 +48,13 @@ const Header = () => {
           </Link>
         </nav>
         <div className="hidden lg:flex space-x-6 items-center">
-          <Link to="/signup">
-            <img src={AccountIcon} alt="AccountIcon" className="h-6" />
-          </Link>
+          {user ? (
+            <button onClick={handleLogout}>LogOut</button>
+          ) : (
+            <Link to="/login">
+              <img src={AccountIcon} alt="AccountIcon" className="h-6" />
+            </Link>
+          )}
           <button onClick={toggleCart}>
             <img src={CartIcon} alt="CartIcon" className="h-6" />
           </button>

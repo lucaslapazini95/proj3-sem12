@@ -5,6 +5,10 @@ import Home from "../pages/Home";
 import Shop from "../pages/Shop";
 import SingleProduct from "../pages/SingleProduct";
 import Cart from "../pages/Cart";
+import Checkout from "../pages/Checkout";
+import Login from "../pages/Login";
+import Register from "../pages/Register";
+import PrivateRoute from "../components/privateRoute/PrivateRoute";
 
 export const router = createBrowserRouter([
   {
@@ -31,6 +35,24 @@ export const router = createBrowserRouter([
         path: "/cart",
         element: <Cart />,
       },
+      {
+        path: "/checkout",
+        element: <PrivateRoute />,
+        children: [
+          {
+            path: "",
+            element: <Checkout />,
+          },
+        ],
+      },
     ],
+  },
+  {
+    path: "/login",
+    element: <Login />,
+  },
+  {
+    path: "/register",
+    element: <Register />,
   },
 ]);

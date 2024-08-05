@@ -1,8 +1,8 @@
+import React, { useState } from "react";
 import { useForm, SubmitHandler } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import * as yup from "yup";
 import { FaCheckCircle, FaSpinner } from "react-icons/fa";
-import { useState } from "react";
 
 type FormValues = {
   name: string;
@@ -11,24 +11,26 @@ type FormValues = {
   message: string;
 };
 
-const schema = yup.object().shape({
+const schema = yup.object({
   name: yup.string().required("Your name is required"),
   email: yup
     .string()
     .email("Invalid email address")
     .required("Email is required"),
-  subject: yup.string(),
+  subject: yup.string().optional(),
   message: yup.string().required("Message is required"),
 });
 
-const FormContact = () => {
+const FormContact: React.FC = () => {
   const {
     register,
     handleSubmit,
     formState: { errors, isSubmitting },
   } = useForm<FormValues>({
-    resolver: yupResolver(schema),
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    resolver: yupResolver(schema) as any,
   });
+
   const [success, setSuccess] = useState(false);
 
   const onSubmit: SubmitHandler<FormValues> = (data) => {

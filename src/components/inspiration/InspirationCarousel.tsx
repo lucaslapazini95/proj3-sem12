@@ -2,6 +2,7 @@ import { Splide, SplideSlide } from "@splidejs/react-splide";
 import { useEffect, useRef, useState } from "react";
 import "@splidejs/react-splide/css";
 
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
 const Carousel = ({ products }: { products: any[] }) => {
   const splideRef = useRef<Splide>(null);
   const [currentSlideIndex, setCurrentSlideIndex] = useState<number>(0);

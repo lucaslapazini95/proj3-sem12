@@ -1,5 +1,3 @@
-import ArrowIcon from "../../assets/arrow-general.svg";
-
 type HeroProps = {
   title: string;
   firstPath: string;
