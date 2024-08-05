@@ -1,4 +1,4 @@
-# <img src="src/assets/furniro-logo.svg" alt="Logotype" style="margin-left: 20px; vertical-align: middle; width: 30px" /> Furniro 
+# <img src="src/assets/furniro-logo.svg" alt="Logotype" style="margin-left: 20px; vertical-align: middle; width: 100px" /> Furniro 
 
 ![Badge Status](http://img.shields.io/static/v1?label=STATUS&message=FINISH&color=GREEN&style=for-the-badge)
 
