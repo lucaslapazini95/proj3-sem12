@@ -4,6 +4,8 @@ import Breadcrumbs from "../components/singleProduct/Breadcrumbs";
 import InfoProduct from "../components/singleProduct/InfoProduct";
 import { useSelector } from "react-redux";
 import { RootState } from "../redux/store";
+import Description from "../components/singleProduct/Description";
+import RelatedProducts from "../components/singleProduct/RelatedProducts";
 
 const SingleProduct: React.FC = () => {
   const { sku } = useParams<{ sku: string }>();
@@ -19,6 +21,8 @@ const SingleProduct: React.FC = () => {
     <div>
       <Breadcrumbs productTitle={product.title} />
       <InfoProduct />
+      <Description longDescription={product.description.long} />
+      <RelatedProducts category={product.category} />
     </div>
   );
 };

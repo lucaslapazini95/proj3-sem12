@@ -1,16 +1,15 @@
 import React from "react";
-import { IProducts } from "../../types/product";
+import { useSelector } from "react-redux";
+import { RootState } from "../../redux/store";
 import ProductCard from "../productCard/ProductCard";
 
 interface RelatedProductsProps {
   category: string;
-  products: IProducts[];
 }
 
-const RelatedProducts: React.FC<RelatedProductsProps> = ({
-  category,
-  products,
-}) => {
+const RelatedProducts: React.FC<RelatedProductsProps> = ({ category }) => {
+  const products = useSelector((state: RootState) => state.products.products);
+
   const relatedProducts = products
     .filter((product) => product.category === category)
     .slice(0, 4);

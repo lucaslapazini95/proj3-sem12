@@ -25,6 +25,7 @@ const Header = () => {
 
   const handleLogout = async () => {
     await auth.signOut();
+    toggleMenu();
   };
 
   return (
@@ -49,7 +50,12 @@ const Header = () => {
         </nav>
         <div className="hidden lg:flex space-x-6 items-center">
           {user ? (
-            <button onClick={handleLogout}>LogOut</button>
+            <button
+              onClick={handleLogout}
+              className="bg-gold-500 text-white py-2 px-4 rounded transition hover:bg-gold-600"
+            >
+              LogOut
+            </button>
           ) : (
             <Link to="/login">
               <img src={AccountIcon} alt="AccountIcon" className="h-6" />
@@ -109,16 +115,27 @@ const Header = () => {
                 Contact
               </Link>
             </li>
-            <li>
-              <Link
-                to="/signup"
-                className="flex items-center space-x-2 text-gray-700 hover:text-gray-900"
-                onClick={toggleMenu}
-              >
-                <img src={AccountIcon} alt="AccountIcon" className="h-6" />
-                <span>Sign Up</span>
-              </Link>
-            </li>
+            {user ? (
+              <li>
+                <button
+                  onClick={handleLogout}
+                  className="bg-gold-500 text-white py-2 px-4 rounded transition hover:bg-gold-600"
+                >
+                  LogOut
+                </button>
+              </li>
+            ) : (
+              <li>
+                <Link
+                  to="/login"
+                  className="flex items-center space-x-2 text-gray-700 hover:text-gray-900"
+                  onClick={toggleMenu}
+                >
+                  <img src={AccountIcon} alt="AccountIcon" className="h-6" />
+                  <span>Login</span>
+                </Link>
+              </li>
+            )}
             <li>
               <button
                 className="flex items-center space-x-2 text-gray-700 hover:text-gray-900"

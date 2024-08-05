@@ -13,6 +13,10 @@ interface ProductDetailsProps {
 const ProductDetails: React.FC<ProductDetailsProps> = ({ product }) => {
   const dispatch = useDispatch();
   const [quantity, setQuantity] = useState(1);
+  const [selectedSize, setSelectedSize] = useState<string>(product.sizes[0]);
+  const [selectedColor, setSelectedColor] = useState<string>(
+    product.colors[0].hex
+  );
 
   const handleIncrement = () => setQuantity((prevQuantity) => prevQuantity + 1);
   const handleDecrement = () =>
@@ -36,7 +40,7 @@ const ProductDetails: React.FC<ProductDetailsProps> = ({ product }) => {
     const emptyStars = 5 - fullStars - halfStars;
 
     return (
-      <>
+      <div className="flex items-center mb-4">
         {Array(fullStars)
           .fill(null)
           .map((_, index) => (
@@ -60,7 +64,7 @@ const ProductDetails: React.FC<ProductDetailsProps> = ({ product }) => {
               className="w-5 h-5"
             />
           ))}
-      </>
+      </div>
     );
   };
 
@@ -72,38 +76,88 @@ const ProductDetails: React.FC<ProductDetailsProps> = ({ product }) => {
       <span className="text-[1.5rem] text-[#9f9f9f] font-medium mb-4 block">
         R$ {product.salePrice.toFixed(2)}
       </span>
-      <div className="flex mb-4">{renderStars(product.rating)}</div>
+
+      {/* Rating */}
+      {renderStars(product.rating)}
+
       <p className="text-sm font-normal text-black mb-5">
         {product.description.short}
       </p>
-      <div className="flex gap-4 mb-15">
-        <button
-          onClick={handleDecrement}
-          className="w-[123px] h-16 text-base flex gap-4 justify-center items-center border border-[#9f9f9f] rounded-lg text-black"
-        >
-          -
-        </button>
-        <span>{quantity}</span>
-        <button
-          onClick={handleIncrement}
-          className="w-[123px] h-16 text-base flex gap-4 justify-center items-center border border-[#9f9f9f] rounded-lg text-black"
-        >
-          +
-        </button>
+
+      {/* Sizes */}
+      <div className="mb-4">
+        <span className="block text-lg text-black mb-2">Size</span>
+        <div className="flex gap-2">
+          {product.sizes.map((size, index) => (
+            <button
+              key={index}
+              className={`px-3 py-1 border rounded-md ${
+                selectedSize === size
+                  ? "bg-[#B88E2F] text-white"
+                  : "bg-white text-black"
+              }`}
+              onClick={() => setSelectedSize(size)}
+            >
+              {size}
+            </button>
+          ))}
+        </div>
+      </div>
+
+      {/* Colors */}
+      <div className="mb-4">
+        <span className="block text-lg text-black mb-2">Color</span>
+        <div className="flex gap-2">
+          {product.colors.map((color, index) => (
+            <button
+              key={index}
+              style={{ backgroundColor: color.hex }}
+              className={`w-8 h-8 border rounded-full ${
+                selectedColor === color.hex ? "border-black" : "border-gray-300"
+              }`}
+              onClick={() => setSelectedColor(color.hex)}
+            />
+          ))}
+        </div>
+      </div>
+
+      {/* Quantity Selector and Add to Cart Button */}
+      <div className="flex gap-4 items-center mb-15">
+        <div className="flex items-center">
+          <button
+            onClick={handleDecrement}
+            className="w-[60px] h-[60px] text-2xl flex justify-center items-center border border-[#9f9f9f] rounded-l-lg text-black hover:bg-gray-100 transition"
+          >
+            -
+          </button>
+          <span className="w-[60px] h-[60px] flex justify-center items-center border-t border-b border-[#9f9f9f] text-lg">
+            {quantity}
+          </span>
+          <button
+            onClick={handleIncrement}
+            className="w-[60px] h-[60px] text-2xl flex justify-center items-center border border-[#9f9f9f] rounded-r-lg text-black hover:bg-gray-100 transition"
+          >
+            +
+          </button>
+        </div>
         <button
           onClick={handleAddToCart}
-          className="w-[215px] h-16 rounded-[15px] border border-black text-lg text-black font-normal bg-transparent transition-all cursor-pointer hover:bg-[#B88E2F] hover:text-white hover:border-none"
+          className="w-[230px] h-[60px] rounded-[15px] border border-black text-lg text-white font-normal bg-[#B88E2F] transition-all cursor-pointer hover:bg-opacity-90 hover:border-[#B88E2F]"
         >
           Add To Cart
         </button>
       </div>
-      <div className="text-lg text-black font-normal mb-3">Stock: 99</div>
+
+      {/* Meta Info */}
       <div className="border-t border-[#9f9f9f] pt-10">
         <p className="text-base text-[#9f9f9f] font-normal">
           SKU: {product.sku}
         </p>
         <p className="text-base text-[#9f9f9f] font-normal">
           Category: {product.category}
+        </p>
+        <p className="text-base text-[#9f9f9f] font-normal">
+          Tags: {product.tags.join(", ")}
         </p>
       </div>
     </div>

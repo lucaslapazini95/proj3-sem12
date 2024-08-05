@@ -9,24 +9,24 @@ export interface IProducts {
   discountPercentage: number;
   new: boolean;
   slug?: string;
-  description: Idescription;
-  colors: Icolors[];
-  sizes: unknown[];
+  description: IDescription;
+  colors: IColors[];
+  sizes: string[];
   rating: number;
-  images: Iimages;
+  images: IImages;
 }
 
-export interface Idescription {
+export interface IDescription {
   short: string;
   long: string;
 }
 
-export interface Icolors {
+export interface IColors {
   name: string;
   hex: string;
 }
 
-export interface Iimages {
+export interface IImages {
   mainImage: string;
   gallery: string[];
 }
