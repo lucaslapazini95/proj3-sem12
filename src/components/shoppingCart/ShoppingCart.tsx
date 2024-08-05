@@ -33,8 +33,8 @@ const ShoppingCart: React.FC = () => {
       {cartItems.length === 0 ? (
         <p>Your cart is empty.</p>
       ) : (
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-          <div className="col-span-2">
+        <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
+          <div className="lg:col-span-2">
             <div className="overflow-x-auto">
               <table className="w-full bg-white shadow-md rounded">
                 <thead>
@@ -49,18 +49,20 @@ const ShoppingCart: React.FC = () => {
                 <tbody>
                   {cartItems.map((item) => (
                     <tr key={item.id} className="border-t">
-                      <td className="py-4 px-6 flex items-center space-x-4">
+                      <td className="py-4 px-6 flex flex-col md:flex-row items-start md:items-center space-y-2 md:space-y-0 space-x-0 md:space-x-4">
                         <img
                           src={item.imageUrl}
                           alt={item.title}
                           className="w-16 h-16 object-cover rounded"
                         />
-                        <span className="text-gray-700">{item.title}</span>
+                        <span className="text-gray-700 text-sm md:text-base">
+                          {item.title}
+                        </span>
                       </td>
-                      <td className="py-4 px-6 text-gray-700">
+                      <td className="py-4 px-6 text-gray-700 text-sm md:text-base">
                         R$ {item.salePrice.toFixed(2)}
                       </td>
-                      <td className="py-4 px-6">
+                      <td className="py-4 px-6 text-gray-700">
                         <div className="flex items-center space-x-2">
                           <button
                             onClick={() =>
@@ -70,7 +72,9 @@ const ShoppingCart: React.FC = () => {
                           >
                             -
                           </button>
-                          <span className="text-gray-700">{item.quantity}</span>
+                          <span className="text-gray-700 text-sm md:text-base">
+                            {item.quantity}
+                          </span>
                           <button
                             onClick={() =>
                               handleQuantityChange(item.id, item.quantity + 1)
@@ -81,15 +85,19 @@ const ShoppingCart: React.FC = () => {
                           </button>
                         </div>
                       </td>
-                      <td className="py-4 px-6 text-gray-700">
+                      <td className="py-4 px-6 text-gray-700 text-sm md:text-base">
                         R$ {(item.salePrice * item.quantity).toFixed(2)}
                       </td>
-                      <td className="py-4 px-6">
+                      <td className="py-4 px-6 text-gray-700">
                         <button
                           onClick={() => handleRemoveItem(item.id)}
-                          className="text-red-500 hover:text-red-700"
+                          className="text-red-500 hover:text-red-700 flex justify-center"
                         >
-                          <img src={TrashIcon} alt="Remove item" />
+                          <img
+                            src={TrashIcon}
+                            alt="Remove item"
+                            className="w-6 h-6"
+                          />
                         </button>
                       </td>
                     </tr>

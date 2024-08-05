@@ -1,19 +1,20 @@
-import React from "react";
+import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { IProducts } from "../../types/product";
 import { useDispatch } from "react-redux";
 import { addItemToCart } from "../../redux/cartSlice";
 
 const ProductCard: React.FC<{ product: IProducts }> = ({ product }) => {
-  const shouldShowDiscount = Math.random() > 0.5;
-  const navigation = useNavigate();
+  const navigate = useNavigate();
   const dispatch = useDispatch();
+  const [isHovered, setIsHovered] = useState(false);
 
   const handleRedirect = () => {
-    navigation(`/shop/product/${product.sku}`);
+    navigate(`/shop/product/${product.sku}`);
   };
 
-  const handleAddToCart = () => {
+  const handleAddToCart = (event: React.MouseEvent) => {
+    event.stopPropagation();
     dispatch(
       addItemToCart({
         id: product.id,
@@ -26,35 +27,66 @@ const ProductCard: React.FC<{ product: IProducts }> = ({ product }) => {
   };
 
   const hasDiscount = product.normalPrice !== product.salePrice;
-  const discountCircle =
-    hasDiscount && !product.new && shouldShowDiscount ? (
-      <div className="absolute top-4 right-4 w-11 h-11 bg-[#FF4D4D] text-white text-base flex items-center justify-center rounded-full">
-        {Math.round(product.discountPercentage * 100)}%
-      </div>
-    ) : null;
 
   return (
-    <div className="relative max-h-[446px] w-[285px] rounded-xl overflow-hidden bg-white shadow-md">
+    <div
+      className="relative rounded-xl overflow-hidden shadow-md transition-transform transform hover:scale-105 cursor-pointer"
+      onMouseEnter={() => setIsHovered(true)}
+      onMouseLeave={() => setIsHovered(false)}
+      onClick={handleRedirect}
+    >
       <img
-        className="rounded-t-xl w-full object-cover object-center"
+        className="rounded-xl w-full object-cover object-center"
         src={product.images.mainImage}
         alt={product.title}
-        onClick={handleRedirect}
       />
+
       {product.new && (
         <div className="absolute top-4 right-4 w-11 h-11 bg-[#2EC1AC] text-white text-base flex items-center justify-center rounded-full">
           New
         </div>
       )}
-      {discountCircle}
-      <div className="p-5 bg-[#F4F5F7] rounded-b-xl h-[180px]">
+
+      {hasDiscount && (
+        <div className="absolute top-4 right-4 w-11 h-11 bg-[#FF4D4D] text-white text-base flex items-center justify-center rounded-full">
+          {Math.round(product.discountPercentage * 100)}%
+        </div>
+      )}
+
+      <div
+        className={`absolute inset-0 bg-black bg-opacity-50 transition-opacity ${
+          isHovered ? "opacity-100" : "opacity-0"
+        } flex flex-col justify-center items-center`}
+      >
+        <button
+          onClick={handleAddToCart}
+          className="bg-white text-[#B88E2F] font-semibold py-2 px-4 rounded-lg hover:bg-[#B88E2F] hover:text-white transition-all duration-300"
+        >
+          Add to Cart
+        </button>
+        <div className="flex mt-4 space-x-4">
+          <button className="text-white hover:text-[#B88E2F] transition-all">
+            Share
+          </button>
+          <button className="text-white hover:text-[#B88E2F] transition-all">
+            Compare
+          </button>
+          <button className="text-white hover:text-[#B88E2F] transition-all">
+            Like
+          </button>
+        </div>
+      </div>
+
+      <div className="p-5 bg-[#F4F5F7] rounded-b-xl h-[180px] flex flex-col justify-between">
         <h3
-          className="text-2xl font-bold text-[#3A3A3A] overflow-hidden"
+          className="text-xl font-bold text-[#3A3A3A] overflow-hidden leading-tight"
           style={{
             maxHeight: "4.5rem",
             display: "-webkit-box",
             WebkitBoxOrient: "vertical",
-            WebkitLineClamp: 2,
+            WebkitLineClamp: 3,
+            overflow: "hidden",
+            textOverflow: "ellipsis",
           }}
         >
           {product.title}
@@ -69,12 +101,6 @@ const ProductCard: React.FC<{ product: IProducts }> = ({ product }) => {
             </span>
           )}
         </div>
-        <button
-          onClick={handleAddToCart}
-          className="mt-4 bg-[#B88E2F] text-white py-2 px-4 rounded hover:bg-[#A07A24] transition-all duration-300"
-        >
-          Adicionar ao Carrinho
-        </button>
       </div>
     </div>
   );

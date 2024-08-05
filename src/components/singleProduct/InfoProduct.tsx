@@ -15,9 +15,13 @@ const InfoProduct: React.FC = () => {
   }
 
   return (
-    <div className="container flex flex-col md:flex-row justify-center items-center gap-20">
-      <ProductImages product={product} />
-      <ProductDetails product={product} />
+    <div className="container mx-auto flex flex-col lg:flex-row justify-between items-start gap-8 py-16">
+      <div className="lg:w-1/2">
+        <ProductImages product={product} />
+      </div>
+      <div className="lg:w-1/2">
+        <ProductDetails product={product} />
+      </div>
     </div>
   );
 };

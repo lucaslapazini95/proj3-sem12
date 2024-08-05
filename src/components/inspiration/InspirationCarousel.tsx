@@ -1,11 +1,13 @@
 import { Splide, SplideSlide } from "@splidejs/react-splide";
 import { useEffect, useRef, useState } from "react";
+import { useNavigate } from "react-router-dom";
 import "@splidejs/react-splide/css";
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 const Carousel = ({ products }: { products: any[] }) => {
   const splideRef = useRef<Splide>(null);
   const [currentSlideIndex, setCurrentSlideIndex] = useState<number>(0);
+  const navigate = useNavigate();
 
   const handleNextSlide = () => {
     if (splideRef.current) {
@@ -24,6 +26,10 @@ const Carousel = ({ products }: { products: any[] }) => {
     updateSlideHeight();
   }, [currentSlideIndex]);
 
+  const handleExploreMore = () => {
+    navigate("/shop");
+  };
+
   return (
     <div className="flex flex-col lg:flex-row md:h-[670px] bg-[#FCF8F3] py-16">
       <div className="w-full lg:w-[661px] items-center flex flex-col justify-center text-[#3A3A3A]">
@@ -37,7 +43,10 @@ const Carousel = ({ products }: { products: any[] }) => {
           prototypes of rooms that inspire you.
         </p>
         <div className="lg:mr-[15rem]">
-          <button className="bg-gold-500 text-white px-4 py-2 rounded transition w-[176px] h-[48px]">
+          <button
+            className="bg-gold-500 text-white px-4 py-2 rounded transition w-[176px] h-[48px]"
+            onClick={handleExploreMore}
+          >
             Explore more
           </button>
         </div>

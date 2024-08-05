@@ -1,5 +1,5 @@
 import React from "react";
-import ArrowRight from "../../assets/arrow-general.svg"; // Aponte para o SVG correto
+import ArrowRight from "../../assets/arrow-general.svg";
 
 const Breadcrumbs: React.FC<{ productTitle: string }> = ({ productTitle }) => {
   return (

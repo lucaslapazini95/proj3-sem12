@@ -1,12 +1,12 @@
 const PaymentMethod = () => {
   return (
-    <div className="p-6">
-      <h2 className="text-xl font-semibold mb-4">Payment Method</h2>
-      <div className="mb-4">
+    <div className="bg-white shadow-lg p-8 w-full md:w-1/3 rounded-md">
+      <h2 className="text-2xl font-semibold mb-6">Payment Method</h2>
+      <div className="mb-6">
         <p className="font-medium">Product</p>
         <p>Asgaard sofa x 1</p>
       </div>
-      <div className="mb-4">
+      <div className="mb-6">
         <div className="flex justify-between">
           <span>Subtotal</span>
           <span className="font-semibold">R$ 250,000.00</span>
@@ -16,9 +16,9 @@ const PaymentMethod = () => {
           <span className="font-semibold text-yellow-600">R$ 250,000.00</span>
         </div>
       </div>
-      <div className="mb-4">
+      <div className="mb-6">
         <label className="block text-sm font-medium">Payment Options</label>
-        <div className="flex flex-col gap-2 mt-2">
+        <div className="flex flex-col gap-3 mt-3">
           <label className="flex items-center gap-2">
             <input type="radio" name="payment" className="h-4 w-4" />
             Direct Bank Transfer
@@ -29,7 +29,7 @@ const PaymentMethod = () => {
           </label>
         </div>
       </div>
-      <button className="w-full bg-yellow-600 hover:bg-yellow-700 text-white py-2 rounded">
+      <button className="w-full bg-yellow-600 hover:bg-yellow-700 text-white py-3 rounded">
         Place Order
       </button>
     </div>
