@@ -9,7 +9,7 @@ const HomeHero = () => {
   }
 
   return (
-    <section className="bg-cover bg-center h-[700px] flex items-center justify-center bg-[url('src/assets/home-hero.png')]">
+    <section className="bg-cover bg-center h-[700px] flex items-center justify-center bg-[url('/src/assets/home-hero.png')]">
       <div className="max-w-[1380px] w-full flex items-center justify-end px-4">
         <div className="bg-[#FFF3E3] max-w-[643px] w-full p-6 md:p-8 lg:p-12 rounded-xl ml-auto">
           <span className="text-[#333] text-base font-semibold tracking-wider mb-2">
