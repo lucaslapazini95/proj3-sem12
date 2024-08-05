@@ -1,10 +1,12 @@
-# <img src="src/assets/furniro-logo.svg" alt="Logotype" style="margin-left: 20px; vertical-align: middle; width: 100px" /> Furniro 
+# <img src="src/assets/demo-logo.jpg" alt="Logotype" style="margin-left: 20px; vertical-align: middle; width: 100px" /> Furniro
 
 ![Badge Status](http://img.shields.io/static/v1?label=STATUS&message=FINISH&color=GREEN&style=for-the-badge)
 
 # About the Project
 
 This project is an e-commerce application for interior furniture, developed using **React** and **TypeScript**. The application allows users to browse through a list of products, view detailed information about each item, add products to the cart, and complete the purchase after logging in.
+
+<img src="src/assets/demo.jpg" alt="demo"/>
 
 ## 📲 Main Features
 
@@ -49,10 +51,10 @@ To get a local copy of the project up and running, follow these steps:
    npm run json-server
    ```
 
-3. Start the development server in another terminal:
+4. Start the development server in another terminal:
 
    ```bash
    npm run dev
    ```
 
-4. Open your browser and visit `http://localhost:5173` to view the application.
+5. Open your browser and visit `http://localhost:5173` to view the application.
