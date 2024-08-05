@@ -1,4 +1,4 @@
-# <img src="src/assets/demo-logo.jpg" alt="Logotype" style="margin-left: 20px; vertical-align: middle; width: 100px" /> Furniro
+# <img src="src/assets/demo-logo.jpg" alt="Logotype" style="margin-left: 20px; vertical-align: middle; width: 100px" /> Furniro - Furniture E-Shop
 
 ![Badge Status](http://img.shields.io/static/v1?label=STATUS&message=FINISH&color=GREEN&style=for-the-badge)
 
